@@ -118,6 +118,9 @@ module Broker
       true
     end
 
+    #TODO account api endpoints for getting balances and requesting withdrawals.
+
+
   private
 
     def api
