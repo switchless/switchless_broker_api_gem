@@ -1,24 +1,45 @@
 # SwitchlessBrokerApi
 
-TODO: Write a gem description
+This is a gem that exercises the Switchless Broker API.
+The Broker API provides quotes for buying or selling Bitcoin; and allows execution of the quotes.
+Customers need to maintain a float or have a settlement aggreement with Switchless.
+You get API access by being a trusted Switchless partner.
+Email info@switchless.com for more details.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'switchless_broker_api'
+    gem 'switchless_broker_api', git: 'https://github.com/Switchless/switchless_broker_api_gem.git'
 
 And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install switchless_broker_api
-
 ## Usage
 
-TODO: Write usage instructions here
+include the following broker.rb file as a library dependency in your project.
+Get the settings as is appropriate for your project
+
+    module Broker
+      # Return the default Broker instance.
+      def Broker.get
+        unless Rails.env.production?
+          @@instance ||= Broker::StubbedApi.new
+          return @@instance
+        end
+
+        @@instance ||= Broker::Api.new(
+          Settings.broker.host,
+          Settings.broker.port,
+          Settings.broker.username,
+          Settings.broker.password,
+          Settings.broker.cert,
+          Logger.new("#{Rails.root}/log/broker.log")
+        @@instance
+      end
+    end
+
 
 ## Contributing
 
