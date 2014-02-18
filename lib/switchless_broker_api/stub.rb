@@ -21,8 +21,8 @@ module Stub
       end
     end
 
-    QUOTE_TYPE_BUY = Broker::Api::QUOTE_TYPE_BUY
-    QUOTE_TYPE_SELL = Broker::Api::QUOTE_TYPE_SELL
+    QUOTE_TYPE_BUY = 'BUY'
+    QUOTE_TYPE_SELL = 'SELL'
 
     def quote(pair, base_amount, quote_type)
       if pair != 'XBTZAR'
